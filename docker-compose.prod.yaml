@@ -33,6 +33,19 @@ services:
         max_attempts: 3
         window: 120s
 
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    volumes:
+      - ./static:/ots/static
+      - ./media:/ots/media
+    depends_on: 
+      - server
+    restart: always
+
 volumes:
   postgres_data:   
     
